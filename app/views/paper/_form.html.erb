@@ -1,0 +1,47 @@
+
+<%= form_with(model: paper, local: true, url: paper.new_record? ? user_paper_index_path : user_paper_path(paper)) do |form| %>
+
+  
+  <%= render "shared/errors", object: paper %>
+  <div class="form-outline mb-4">
+    <%= form.label :name, 'Paper Name', class: "form-label" %>
+    <%= form.text_field :name ,class: "form-control"%>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, 'Description',class: "form-label" %>
+    <%= form.text_area :description,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :total_marks, 'Total Marks',class: "form-label" %>
+    <%= form.number_field :total_marks,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :duration_in_minutes, 'Duration in Minutes',class: "form-label" %>
+    <%= form.number_field :duration_in_minutes,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :passing_marks, 'Passing Marks',class: "form-label"  %>
+    <%= form.number_field :passing_marks,class: "form-control" %>
+  </div>
+
+  
+  <div class="form-outline mb-4">
+    <%= form.label :question_ids, 'Select Questions',class: "form-label"  %>
+    <ul class="list-unstyled">
+    <%= form.collection_check_boxes :question_ids, Question.order(:name), :id, :question do |b|%>
+      <li>
+        <%= b.check_box %> <%= b.label %>
+      </li>
+    <%end%>
+    </ul>
+  </div>
+
+
+  
+  <%= form.submit 'Create Paper', class:"btn btn-primary btn-block" %>
+  
+<% end %>

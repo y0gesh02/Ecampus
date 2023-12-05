@@ -1,0 +1,39 @@
+<%= form_with(model: job ,local: true, url: job.new_record? ? job_index_path : job_path(job)) do |form| %>
+  
+  <%= render "shared/errors", object: job %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :title, style: "display: block" ,class: "form-label" %>
+    <%= form.text_field :title,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :company_name, style: "display: block",class: "form-label"  %>
+    <%= form.text_field :company_name,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, style: "display: block",class: "form-label"  %>
+    <%= form.text_area :description,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :contact_info, style: "display: block",class: "form-label"  %>
+    <%= form.text_field :contact_info,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :status,class: "form-label"%>
+    <%= form.select :status, ['active', 'expired'] ,{},class: "form-control"%>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :salary, style: "display: block",class: "form-label"  %>
+    <%= form.text_field :salary ,class: "form-control"%>
+  </div>
+
+  <div >
+    <%= form.submit class:"btn btn-primary btn-block" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,116 @@
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <%= image_tag('logo2.jpg' ,class:"card-img-top" ,alt:"User Image")%>
+        <div class="card-body">
+          <h5 class="card-title"><%= @user.name %></h5>
+          <p class="card-text"><%= @user.email %></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Profile Information</h5>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td><%= @user.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td><%= @user.email %></td>
+              </tr>
+              <tr>
+                <th scope="row">Role</th>
+                <td><%= @user.role %></td>
+              </tr>
+              <%if @user.admin?%>
+                <tr>
+                  <th scope="row">Company Name</th>
+                  <td><%= @user.company_name %></td>
+                </tr>
+              <%else%>
+                <tr>
+                  <th scope="row">College Name</th>
+                  <td><%= @user.college_name %></td>
+                </tr>
+                <tr>
+                  <th scope="row">Course Year</th>
+                  <td><%= @user.course_year %></td>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <% if current_user.admin? %>
+        <div class="card mt-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Admin Panel</h5>
+              <%= link_to "Create Campus Drive", new_campus_drife_path, class: "btn btn-primary mb-2 mt-2" %>
+              <%= link_to "Create New Job", new_job_path, class: "btn btn-primary mb-2 mt-2"  %>  
+              <%= link_to "Create New Question", new_question_path,class: "btn btn-primary mb-2 mt-2"  %>
+              <%= link_to "Create New Paper", new_user_paper_path(current_user), class: "btn btn-primary mb-2  mt-2"  %>  
+              <%= link_to "Create New Test", new_user_test_path(current_user), class: "btn btn-primary mb-2  mt-2" %>
+              <br>
+              <hr/>
+              <%= link_to "See Tests", user_test_index_path(current_user),class: "btn btn-primary mb-2  mt-2"  %>
+              <%= link_to "See all Paper", user_paper_index_path(current_user), class: "btn btn-primary mb-2  mt-2"  %>
+              <%= link_to "See my Questions", question_index_path(my_questions: true), class: "btn btn-primary mb-2  mt-2" %>
+              <%= link_to "See all Questions", question_index_path,class: "btn btn-primary mb-2  mt-2" %>
+              <%= link_to "See my Campus Drive ", campus_drives_path(my_campus_drives: true), class: "btn btn-primary mb-2  mt-2"  %>
+              <%= link_to "See my Jobs", job_index_path(my_jobs: true), class: "btn btn-primary mb-2  mt-2" %>
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <% if @campus_application.present? %>
+      <div class="card mt-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Registered Campus Drives</h5>
+            <% @campus_application.each do |r| %>
+              <div class="card-body">
+                  <div class="card-subtitle">
+                    <%= link_to image_tag(r.campus_drive.image_file_name), r.campus_drive %>
+                    <%= link_to r.campus_drive.name, r.campus_drive %>
+                  </div>
+                  <div class="right">
+                    <h6>Application Status: <%= r.status%></h6>
+                  </div>
+                  <div class="date">
+                    <%= time_ago_in_words(r.created_at) %> ago
+                  </div>
+                </div>
+              <% end %>
+          </div>
+      </div>
+    <% end %>
+    <% if @job_application.present? %>
+      <div class="card mt-4 mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Registered Jobs</h5>
+            <% @job_application.each do |r| %>
+              <div class="card-body">
+                  <div class="card-subtitle">
+                    <%= link_to r.job.title, r.job %>
+                    <h6>Job Status :<%=  r.job.status %></h6>
+                  </div>
+                  <div class="right">
+                    <h6>Application Status: <%= r.status%></h6>
+                  </div>
+                  <div class="date">
+                    <%= time_ago_in_words(r.created_at) %> ago
+                  </div>
+                </div>
+              <% end %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

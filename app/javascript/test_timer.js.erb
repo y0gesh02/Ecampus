@@ -1,0 +1,27 @@
+$(document).ready(function() {
+    console.log("start");
+
+    let remainingTimeInSeconds = $('#remaining-time').data('remaining-time');
+
+    let remainingTimeElement = $('#remaining-time');
+
+    function updateTimer() {
+        const days = Math.floor(remainingTimeInSeconds / (60 * 60 * 24));
+        const hours = Math.floor((remainingTimeInSeconds % (60 * 60 * 24)) / (60 * 60));
+        const minutes = Math.floor((remainingTimeInSeconds % (60 * 60)) / 60);
+        const seconds = remainingTimeInSeconds % 60;
+
+        // Format the time as days:hours:minutes:seconds
+        const formattedTime = `Test Will Start in ${days}Day ${hours}hour ${minutes}m ${seconds}s`;
+
+        remainingTimeElement.text(formattedTime);
+
+        if (remainingTimeInSeconds > 0) {
+            remainingTimeInSeconds--;
+            setTimeout(updateTimer, 1000);
+        } else {
+            remainingTimeElement.text('Test Has been Started Pls Click on Continue button');
+        }
+    }
+    updateTimer();
+});

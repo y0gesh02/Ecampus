@@ -1,0 +1,30 @@
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-3 mb-5 mt-5 bg-light rounded">
+
+<h1>Paper Details</h1>
+<strong>Total Questions in Paper : </strong> <%= @paper.questions.size %>
+
+<div class="mt-4"> 
+  <% @paper.questions.each do |q| %>
+    <hr/>
+    <p><strong>Question </strong><%=q.id%>: <%= q.question %></p>
+    <% if q.question_type == 'objective' %>
+      <p><strong>Options:</strong></p>
+      <ul>
+        <% q.options.each do |option| %>
+          <li><%= option %></li>
+        <% end %>
+      </ul>
+      <p><strong>Correct Answer:</strong> <%= q.correct_answer %></p>
+    <% elsif q.question_type == 'answer' %>
+      <p><strong>Answer:</strong>
+          <%= q.answer %>
+    <% end %>
+  <% end %>
+<div>
+
+<div class="flex">
+  <%= link_to "Edit Paper", edit_user_paper_path,class: "btn btn-outline-primary mr-2 mt-2" %>
+  <%= button_to "Delete Paper", user_paper_path(@paper), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-outline-primary mr-2 mt-2 " %>
+  <%= link_to "Back", user_paper_index_path,class: "btn btn-outline-primary mr-2 mt-2" %>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<%= javascript_include_tag("test_timer") %>
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-5 mb-5 mt-5 bg-light rounded">
+<div id="remaining-time" data-remaining-time="<%= @remaining_time_in_seconds %>" class="p-3 mt-2 mb-2 bg-info text-dark text-center shadow-lg p-5 mb-5 rounded" ></div>
+  <h1>Test Instructions</h1>
+
+  <p>Follow the instructions below to complete the test:</p>
+
+  <ol>
+    <li>Read each question carefully.</li>
+    <li>Answer all the questions within the specified time.</li>
+    <li>You can navigate between questions using the navigation buttons.</li>
+    <li>Click the "Submit Test" button when you have completed all questions.</li>
+    <li>No worry,if time ups test will be auto submitted.</li>
+  </ol>
+
+  <h2>This Test Consists <%=@test.papers.size %> Papers</h2>
+
+  <ul>
+    <% @test.papers.each do |paper| %>
+      <li>
+        <strong><%= paper.name %></strong>
+        <p>Duration <%= paper.duration_in_minutes %> minutes</p>
+      </li>
+    <% end %>
+  </ul>
+  <div class="container align-items-center justify-content-center w-50">
+    <%= button_to "Continue", campus_drife_test_attempt_index_path(@campus_drive), class: "btn btn-primary mt-3 mb-3" %>
+  </div>
+</div>

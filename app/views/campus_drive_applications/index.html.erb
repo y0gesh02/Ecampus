@@ -1,0 +1,33 @@
+<%= javascript_include_tag("campus_application_view") %>
+<% if @campus_application.present? %>
+  <h4>Registered Users for <%=@campus_drive.name%></h4>
+  <ul class="list-group list-group-light">
+    <% @campus_application.each do |r| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1"><%= link_to r.user.name, r.user %></p>
+            <p class="text-muted mb-0">Registered <%= time_ago_in_words(r.created_at) %> ago</p>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <% @test_attempt= TestAttempt.find_by(user_id: r.user.id, campus_drive_id: @campus_drive.id)%>
+          <% if @test_attempt.present? %>
+            <p>Total Score: <%= @test_attempt.total_score %></p>
+          <% else%> 
+            <p>Test not attempted yet</p>
+          <% end %>
+        </div>
+        <div class="d-flex align-items-center">
+          <span id="statusID-<%= r.id %>"  class="badge rounded-pill badge-warning bg-primary text-dark"><%= r.status %></span>
+        </div>
+        <%= form_for r, url: campus_drife_application_path(@campus_drive, r), method: :patch, html: { class: "status-form" }, remote: true do |f| %>
+          <%= f.label :status, 'Update Status:', class: "form-label" %>
+          <%= f.select :status, ['Application Submitted', 'Test Attempted', 'Rejected', 'Selected'], { prompt: 'Select Status' },data: { id: r.id }, class: "form-control status-select" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No Registration yet</h3>
+<% end %>

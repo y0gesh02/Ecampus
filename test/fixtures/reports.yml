@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  question: one
+  paper: one
+  response_text: MyText
+  response_choice: MyText
+  test_attempt: one
+
+two:
+  user: two
+  question: two
+  paper: two
+  response_text: MyText
+  response_choice: MyText
+  test_attempt: two

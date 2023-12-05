@@ -1,0 +1,16 @@
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-5 mb-5 mt-5 bg-light rounded">
+  <h1><%= pluralize(@questions.size, "Question") %></h1>
+  <ul class="users">
+    <% @questions.each do |q| %>
+      <li>
+        <%= link_to q.question, q %>
+        created
+        <%= time_ago_in_words(q.created_at) %> ago
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="mt-3">
+    <%= link_to "Create New Question", new_question_path, class: "btn btn-outline-primary mr-2" %>
+  </div>           
+</div>

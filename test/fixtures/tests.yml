@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  details: MyText
+  total_time: 1
+  duration_in_minutes: 1
+  passing_marks: 1
+  job: one
+  campus_drive: one
+
+two:
+  name: MyString
+  details: MyText
+  total_time: 1
+  duration_in_minutes: 1
+  passing_marks: 1
+  job: two
+  campus_drive: two

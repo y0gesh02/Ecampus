@@ -1,0 +1,24 @@
+<!-- questions/_form.html.erb (partial for rendering questions) -->
+<%cnt=0%>
+<% questions.each do |question| %>
+  
+  <div class="question">
+    <p><%=cnt=cnt+1%>. <%= question.question %></p>
+    
+    <% if question.question_type == 'objective' %>
+      <ul>
+        <% question.options.each do |option| %>
+          <li>
+            <%= radio_button_tag "question_#{question.id}", option, false %>
+            <%= label_tag "question_#{question.id}", option %>
+          </li>
+        <% end %>
+      </ul>
+    <% elsif question.question_type == 'answer' %>
+      <div class="row" rows="9">
+        <%= text_area_tag "answer_#{question.id}"%>
+      </div>
+    <% end %>
+    
+  </div>
+<% end %>

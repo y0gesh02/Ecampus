@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <h1><strong><%=@campus_drive.name%></strong></h1>
+  <p><strong>Date:</strong> <%=@campus_drive.start_date%> to <%=@campus_drive.end_date%> </p>
+  <p><strong>Location:</strong>  <%=@campus_drive.location%> </p>
+  <p><strong>Description:</strong> <%=@campus_drive.description%> </p>
+  <p><strong>Eligible Year :</strong> <%=@campus_drive.eligible_year%> </p>
+
+  <% if user_signed_in? && current_user.student?%> 
+      <% if CampusApplication.already_registered_campus(current_user.id, @campus_drive.id).exists? %>   
+        <% if @campus_drive.test.present? %>
+          <%= link_to 'Start Test', new_campus_drife_test_attempt_path(@campus_drive), class: 'btn btn-primary mb-4' %>
+        <% else %>
+          <button class='btn btn-primary' disabled>No Test Available yet</button>
+        <% end %>
+      <% else %>
+        <%= link_to 'Register', new_campus_drife_application_path(@campus_drive), class: 'btn btn-primary mb-4' %>
+      <% end %>
+  <%elsif user_signed_in? == false %>
+    <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary mb-4' %>
+  <%end%>
+  
+</div>
+
+<% if user_signed_in?  && current_user.admin? %>
+  <div class="container">
+    <div class="row">
+    <% if policy(@campus_drive).edit? %>
+      <div class="col-sm-1">
+        <%= link_to "Edit", edit_campus_drife_path, class: "btn btn-outline-primary mt-3 mb-3" %>
+      </div>
+      <div class="col-sm-1">
+        <%= button_to "Delete", campus_drife_path(@campus_drive), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-outline-primary mt-3 mb-3" %>
+      </div>
+      <div class="col-sm-1">
+        <%= link_to "Back", campus_drives_path, class: "btn btn-outline-primary mt-3 mb-3" %>
+      </div>
+      <div class="col-sm-2">
+        <%= link_to "See All Registration", campus_drife_application_index_path(@campus_drive), class: "btn btn-outline-primary mt-3 mb-3" %>
+      </div>
+      <div class="col-sm-2">
+        <%= link_to "See All Test Attempts", campus_drife_test_attempt_index_path(@campus_drive), class: "btn btn-outline-primary mt-3 mb-3" %>
+      </div>
+    </div>
+    <%end%>
+  </div>
+<%end%>
+
+  

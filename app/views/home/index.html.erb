@@ -1,0 +1,32 @@
+<% if user_signed_in? %> 
+  <div> Welcome <%= current_user.name %> </div> 
+<% end %>
+
+<div class="row mb-5 " style="margin-top: 70px;">
+  <div class="col-sm-6 mt-10">
+    <div class="card shadow-lg p-3">
+      <div class="card-body">
+        <h5 class="card-title">For Recruiter</h5>
+        <%# <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> %>
+        <h2>Create Jobs</h2>
+        <h2>Create Campus Drive</h2>
+        <h2>Create Question</h2>
+        <h2>Create Papers</h2>
+        <h2>Create Tests</h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card shadow-lg p-3">
+      <div class="card-body">
+        <h5 class="card-title">For Job Seekers</h5>
+        <%# <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> %>
+        <h2>Find Jobs</h2>
+        <h2>Find Campus Drive</h2>
+        <h2>Attempt Test</h2>
+        <h2>See Status</h2>
+        <h2>Manage Profile</h2>
+      </div>
+    </div>
+  </div>
+</div>

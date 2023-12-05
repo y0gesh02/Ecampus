@@ -1,0 +1,27 @@
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-5 mb-5 mt-5 bg-light rounded">
+
+<h1>Question Details</h1>
+
+<p><strong>Question:</strong> <%= @question.question %></p>
+<p><strong>Question Type:</strong> <%= @question.question_type %></p>
+
+<% if @question.question_type == 'objective' %>
+  <p><strong>Options:</strong></p>
+  <ul>
+    <% @question.options.each do |option| %>
+      <li><%= option %></li>
+    <% end %>
+  </ul>
+  <p><strong>Correct Answer:</strong> <%= @question.correct_answer %></p>
+<% elsif @question.question_type == 'answer' %>
+  <p><strong>Answer:</strong> <%= @question.answer %></p>
+<% end %>
+
+<% if policy(@question).edit? %>
+  <div class="flex">
+    <%= link_to "Edit", edit_question_path(@question) ,class: "btn btn-outline-primary mr-2 mb-1"%>
+    <%= button_to "Delete", question_path(@question), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-outline-primary mr-2" %>
+  </div> 
+<%end%>
+<%= link_to "Back", question_index_path %>
+</div>

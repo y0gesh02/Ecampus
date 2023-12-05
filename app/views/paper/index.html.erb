@@ -1,0 +1,17 @@
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-5 mb-5 mt-5 bg-light rounded">
+  <h1><%= pluralize(@papers.size, "Paper") %></h1>
+  <ul class="users">
+    <% @papers.each do |p| %>
+      <li>
+        <%= link_to p.name, user_paper_path(current_user, p) %>
+        created
+        <%= time_ago_in_words(p.created_at) %> ago
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="mt-3">
+    <%= link_to "Create New Paper", new_user_paper_path, class: "btn btn-outline-primary mr-2" %>
+    <%= link_to "Back",user_path(current_user) ,class: "btn btn-outline-primary mr-2 " %>
+  </div>
+</div>

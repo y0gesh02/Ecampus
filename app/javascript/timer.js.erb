@@ -1,0 +1,20 @@
+$(document).ready(function() {
+    console.log("<%=@current_paper_index%>");
+    const timerElement = $('#timer');
+    <%# let t= <%=@current_paper.duration_in_minutes %>
+    let timeRemaining =  1 * 60; 
+
+    function updateTimer() {
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      timerElement.text(`Time Remaining: ${minutes}m ${seconds}s`);
+
+      if (timeRemaining <= 0) {
+        clearInterval(countdownInterval);
+        $('#paper_submit_form').submit();
+      }
+      timeRemaining--;
+    }
+
+    const countdownInterval = setInterval(updateTimer, 1000);
+  });

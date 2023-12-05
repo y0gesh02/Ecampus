@@ -1,0 +1,15 @@
+<%= javascript_include_tag("timer") %>
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-6      mb-5 mt-5 bg-light rounded">
+  <h1>Test Paper <%= @current_paper_index + 1 %>: <%=@current_paper.name%></h1> 
+  <div id="timer" data-current-paper="<%= @current_paper.to_json%>" class="p-3 mt-2 mb-2 bg-info text-dark text-center shadow-lg p-3 mb-5 rounded"></div> 
+  <%= form_with(model: @report, url:  submit_paper_campus_drife_test_attempt_path(@campus_drive,@test_attempt,paper_index: @current_paper_index ), method: :patch, id: 'paper_submit_form') do |f| %>
+    <%= render 'questions', questions: @questions %>
+    <%= hidden_field_tag 'test_attempt[current_paper_index]', @current_paper_index %>
+    <%if @papers.size == @current_paper_index + 1 %>
+      <%= f.submit "Submit Test",class:"btn btn-outline-primary mt-3 mb-3" %>
+    <%else%>
+      <%= f.submit "Next Paper",class:"btn btn-outline-primary mt-3 mb-3" %>
+    <%end%>
+  <% end %>
+</div>
+

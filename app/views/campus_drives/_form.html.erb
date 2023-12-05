@@ -1,0 +1,44 @@
+<%= form_with(model: campus_drive) do |form| %>
+    
+  <%= render "shared/errors", object: campus_drive %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :name, style: "display: block", class: "form-label" %>
+    <%= form.text_field :name ,class: "form-control"%>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :location, style: "display: block",class: "form-label" %>
+    <%= form.text_field :location,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, style: "display: block",class: "form-label" %>
+    <%= form.text_area :description,class: "form-control" ,rows:"8" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :Test_Start_Time, style: "display: block",class: "form-label" %>
+    <%= form.datetime_select :start_date, class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :Test_End_Time, style: "display: block" ,class: "form-label"%>
+    <%= form.datetime_select :end_date,class: "form-control" %>
+  </div>
+  <div class="form-outline mb-4">
+    <%= form.label :Eligible_Year, style: "display: block" ,class: "form-label"%>
+    <%= form.select :eligible_year, ['1st year', '2nd year', '3rd year', '4th year'], { prompt: 'Select Year' },data: { id: "courseYear"}, class: "form-control status-select" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :test_id, 'Select One Test', class: "form-label" %>
+    <%= form.collection_radio_buttons :test_id, Test.order(:name), :id, :name %>
+  </div>
+
+
+
+  <%= form.submit 'Create', class:"btn btn-primary btn-block" %>
+
+<% end %>
+

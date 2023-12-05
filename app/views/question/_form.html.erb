@@ -1,0 +1,41 @@
+<%= form_with(model: question, local:true, url: question.new_record? ? question_index_path : question_path(question)) do |form| %>
+   
+  
+  <%= render "shared/errors", object: question %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :Question,class: "form-label" %>
+    <%= form.text_area :question, rows: 4 ,class: "form-control"%>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :Question_type,class: "form-label" %>
+    <%= form.select :question_type, ['objective', 'answer'],{},class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :options, 'Enter Four Options ',class: "form-label" %>
+    <% if @editing %>
+      <% question.options.each_with_index do |option, index| %>
+        <%= form.text_field :options, class: 'form-control', name: "question[options][]", value: option ,class: "form-control mt-1"%>
+      <% end %>
+    <% else %>
+        <% 4.times do %>
+        <%= form.text_field :options, class: 'form-control', name: "question[options][]",class: "form-control mt-1" %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :correct_answer,class: "form-label" %>
+    <%= form.text_field :correct_answer,class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :answer,class: "form-label" %>
+    <%= form.text_area :answer, rows: 4 ,class: "form-control"%>
+  </div>
+
+  <%= form.submit "Submit",class:"btn btn-primary btn-block" %>
+  
+<% end %>

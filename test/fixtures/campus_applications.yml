@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  contact_information: MyString
+  status: MyString
+  application_id: MyString
+  user: one
+  campus_drive: one
+
+two:
+  contact_information: MyString
+  status: MyString
+  application_id: MyString
+  user: two
+  campus_drive: two

@@ -1,0 +1,19 @@
+$(document).ready(function() {
+  $('#user_role').change(function() {
+    updateFormFields();
+  });
+
+  updateFormFields();
+
+  function updateFormFields() {
+    var selectedRole = $('#user_role').val();
+
+    $('#companyNameField, #collegeNameField, #courseYearField').hide();
+
+    if (selectedRole === 'HR') {
+      $('#companyNameField').show();
+    } else if (selectedRole === 'Student') {
+      $('#collegeNameField, #courseYearField').show();
+    }
+  }
+});

@@ -1,0 +1,60 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <%= image_tag('logo1.png')%>
+      <%= link_to "Ecampus", root_path, class: "navbar-brand"%>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <li><%= link_to "Campus Drives", campus_drives_path, class: "nav-link active"%></li>
+          </li>
+          <li class="nav-item">
+            <li><%= link_to "Jobs", job_index_path, class: "nav-link active"%></li>
+          </li> 
+        </ul>
+    
+        <% if user_signed_in? %>
+          <div class="nav-item dropdown mr-2 ml-2">
+            <a class=" nav-link dropdown-toggle " style="margin-right: 5px;" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%=current_user.name%>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+              <li><%= link_to "View Profile", user_path(current_user), class: "dropdown-item" %></li>
+              <% if current_user.admin? %>
+                <%= link_to "Create Campus Drive", new_campus_drife_path, class: "dropdown-item"  %>
+                <%= link_to "Create New Job", new_job_path, class: "dropdown-item"  %>  
+                <%= link_to "Create New Question", new_question_path,class: "dropdown-item"  %>
+                <%= link_to "Create New Paper", new_user_paper_path(current_user), class: "dropdown-item"  %>  
+                <%= link_to "Create New Test", new_user_test_path(current_user), class: "dropdown-item" %>
+                <%= link_to "See Tests", user_test_index_path(current_user), class: "dropdown-item"  %>
+                <%= link_to "See all Paper", user_paper_index_path(current_user), class: "dropdown-item"  %>
+                <%= link_to "See my Questions", question_index_path(my_questions: true), class: "dropdown-item"  %>
+                <%= link_to "See all Questions", question_index_path,class: "dropdown-item"  %>
+                <%= link_to "See my Campus Drive ", campus_drives_path(my_campus_drives: true), class: "dropdown-item"  %>
+                <%= link_to "See my Jobs", job_index_path(my_jobs: true), class: "dropdown-item"  %>
+
+              <%end%>
+              
+              <li><hr class="dropdown-divider"></li>
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item"  %>
+            </ul>
+          </div>
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary pl-2" %> 
+
+
+        <%else%>
+          <div mr-4>
+            <%= link_to "Sign Up ", new_user_registration_path, class: "btn btn-outline-primary ml-3" %>
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-primary mr-2" %>
+          </div>
+        <%end%>
+    
+      </div>
+    </div>
+  </nav>
+</div>
+

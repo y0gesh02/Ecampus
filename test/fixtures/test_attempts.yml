@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  test: one
+  campus_drive: one
+  job: one
+  started_at: 2023-09-20 14:29:30
+  submitted_at: 2023-09-20 14:29:30
+  total_score: 1
+  user: one
+
+two:
+  test: two
+  campus_drive: two
+  job: two
+  started_at: 2023-09-20 14:29:30
+  submitted_at: 2023-09-20 14:29:30
+  total_score: 1
+  user: two

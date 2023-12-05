@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user.name %>, </h1>
+    <p>
+      You have successfully completed the test for <%=@user_report.campus_drive%> 
+    </p>
+    <p>
+      Here is Your Report Card!
+    </p>
+    <div>
+      <h1>Total Scored : <%=@user_report.total_score%> </h1>
+      <ul class="list-group list-group-light">
+        <%@test_attempt.reports.each do |report|%>
+          <%question = Question.find(report.question_id)%>
+          <%if question.question_type == 'objective'%>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="text-muted mb-0">Question:  <%= question.question%> </p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <p>Your Ans : <%=report.response_choice%>
+              </div>
+              </li>
+          <%elsif question.question_type == 'answer'%>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div class="d-flex align-items-center">
+                <div class="ms-3">
+                  <p class="text-muted mb-0">Question:  <%= question.question%> </p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <p>Your Ans : <%=report.response_text%>
+              </div>
+              </li>
+          <%end%>
+        <%end%>
+      </ul>
+    </div>
+    <p>Thanks for Taking the test and have a great day!</p>
+  </body>
+</html>

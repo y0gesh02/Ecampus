@@ -1,0 +1,29 @@
+<%if @campus_drives.present?%>
+<div class="mt-3">
+  <h1>Campus Drives</h1>
+</div>
+
+<div class="container mx-auto mt-4 ">
+  <div class="row">
+    <% @campus_drives.each do |campus_drive| %>
+      <div class="col-md-4 mb-4 " >
+        <div class="card shadow-lg p-3" style="width: 18rem;">
+            <%=image_tag(campus_drive.image_file_name)%>
+            <div class="card-body">
+              <h5 class="card-title"><%= truncate(campus_drive.name, length: 20, separator: ' ') %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= campus_drive.start_date %></h6>
+              <p class="card-text"><%= truncate(campus_drive.description, length: 20, separator: ' ') %></p>
+              <%= link_to "View More", campus_drife_path(campus_drive), class: "btn btn-outline-primary ml-3" %>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div> 
+</div>
+<%else%>
+  <div class="mt-3">
+    <h1>Nothing! pls create any Campus Drive first</h1>
+  </div>
+<%end%>
+
+

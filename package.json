@@ -1,0 +1,17 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/y0gesh02/DemoProject.git",
+  "author": "yogeshsakle <yogeshsakle8@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.12"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "3"
+  }
+}

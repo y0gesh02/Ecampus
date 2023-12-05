@@ -1,0 +1,11 @@
+<div class="container align-items-center justify-content-center w-50 shadow-lg p-5 mb-5 mt-5 bg-light rounded">
+  <h2>Apply for Campus Drive: <%= @campus_drive.name %></h2>
+  <%= form_with(model: [@campus_drive, @campus_application], local: true,url: campus_drife_application_index_path) do |form| %>
+  <%= render "shared/errors", object: @campus_application %>
+  <div class="form-outline mb-4">
+    <%= form.label :contact_information, style: "display: block", class: "form-label" %>
+    <%= form.text_field :contact_information ,class: "form-control"%>
+  </div>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+</div>
